@@ -15,19 +15,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // ラベルのプロパティ宣言
     @IBOutlet weak var myLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        // myTextFieldのデリゲートになる
-        myTextField.delegate = self
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+    // 編集終了でキーボードを下げる
+    view.endEditing(true)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     // テキストフィールドの値が変化した時に呼ばれるデリゲートメソッド
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -47,9 +39,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // クリアボタンで実行されるデリゲートメソッド
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         myLabel.text = "0"
         return true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        // myTextFieldのデリゲートになる
+        myTextField.delegate = self
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }
 
